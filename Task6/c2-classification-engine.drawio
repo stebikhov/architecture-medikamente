@@ -1,0 +1,234 @@
+<mxfile host="65bd71144e">
+    <diagram name="C2: движок классификации данных" id="c2-engine">
+        <mxGraphModel dx="1086" dy="2128" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1400" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="b" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#666666;dashed=1;verticalAlign=top;align=left;spacingLeft=10;fontStyle=1;fontSize=12;" value="Движок классификации данных (граница системы, Kubernetes)" vertex="1">
+                    <mxGeometry height="960" width="1240" x="265" y="-30" as="geometry"/>
+                </mxCell>
+                <mxCell id="wh-box" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#8C8496;dashed=0;verticalAlign=top;align=left;spacingLeft=8;fontStyle=1;fontSize=11;" value="Аналитическое хранилище ClickHouse" vertex="1">
+                    <mxGeometry height="420" width="230" x="1530" y="300" as="geometry"/>
+                </mxCell>
+                <mxCell id="wh-land" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7EA6E0;strokeColor=#5B7EBB;fontColor=#ffffff;arcSize=8;fontSize=10;" value="Landing&#xa;(промежуточный, TTL 7 дн.)" vertex="1">
+                    <mxGeometry height="60" width="195" x="1545" y="330" as="geometry"/>
+                </mxCell>
+                <mxCell id="wh-res" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7EA6E0;strokeColor=#5B7EBB;fontColor=#ffffff;arcSize=8;fontSize=10;" value="Restricted&#xa;(C4, C5, прямые идентификаторы C3)" vertex="1">
+                    <mxGeometry height="60" width="195" x="1545" y="405" as="geometry"/>
+                </mxCell>
+                <mxCell id="wh-pse" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7EA6E0;strokeColor=#5B7EBB;fontColor=#ffffff;arcSize=8;fontSize=10;" value="Pseudonymized&#xa;(C3 токенизированные)" vertex="1">
+                    <mxGeometry height="60" width="195" x="1545" y="480" as="geometry"/>
+                </mxCell>
+                <mxCell id="wh-ano" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7EA6E0;strokeColor=#5B7EBB;fontColor=#ffffff;arcSize=8;fontSize=10;" value="Anonymized&#xa;(C1, C2, k-анонимные агрегаты)" vertex="1">
+                    <mxGeometry height="60" width="195" x="1545" y="555" as="geometry"/>
+                </mxCell>
+                <mxCell id="wh-quar" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7EA6E0;strokeColor=#5B7EBB;fontColor=#ffffff;arcSize=8;fontSize=10;" value="Карантин-таблица&#xa;(изолированная, без аналитиков)" vertex="1">
+                    <mxGeometry height="60" width="195" x="1545" y="630" as="geometry"/>
+                </mxCell>
+                <mxCell id="kms" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8C8496;strokeColor=#736782;fontColor=#ffffff;arcSize=8;fontSize=11;" value="KMS / HSM&#xa;[OpenBao + HSM]&#xa;DEK/KEK для зон" vertex="1">
+                    <mxGeometry height="80" width="230" x="1530" y="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="cat" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8C8496;strokeColor=#736782;fontColor=#ffffff;arcSize=8;fontSize=11;" value="Каталог и lineage&#xa;[OpenMetadata]" vertex="1">
+                    <mxGeometry height="80" width="230" x="1530" y="190" as="geometry"/>
+                </mxCell>
+                <mxCell id="opa" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8C8496;strokeColor=#736782;fontColor=#ffffff;arcSize=8;fontSize=11;" value="Privacy-платформа: OPA (политики),&#xa;сервис токенов [PDP, tokenization]" vertex="1">
+                    <mxGeometry height="80" width="230" x="1530" y="760" as="geometry"/>
+                </mxCell>
+                <mxCell id="vm" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8C8496;strokeColor=#736782;fontColor=#ffffff;arcSize=8;fontSize=11;" value="Мониторинг&#xa;[VictoriaMetrics, Elastic]" vertex="1">
+                    <mxGeometry height="70" width="230" x="1530" y="870" as="geometry"/>
+                </mxCell>
+                <mxCell id="dsar-reg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8C8496;strokeColor=#736782;fontColor=#ffffff;arcSize=8;fontSize=11;" value="Реестр DSAR&#xa;[PostgreSQL, ограниченный доступ]&#xa;входная точка запросов субъектов" vertex="1">
+                    <mxGeometry height="90" width="220" x="1040" y="740" as="geometry"/>
+                </mxCell>
+                <mxCell id="src" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8C8496;strokeColor=#736782;fontColor=#ffffff;arcSize=8;fontSize=11;" value="Источники данных&#xa;[1С (выгрузки), Excel на общем диске,&#xa;БД портала, сканы]" vertex="1">
+                    <mxGeometry height="110" width="200" x="20" y="208" as="geometry"/>
+                </mxCell>
+                <mxCell id="steward" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#083F75;strokeColor=#06315C;fontColor=#ffffff;arcSize=8;fontSize=11;" value="Бизнес-аналитик (data steward)&#xa;[человек]" vertex="1">
+                    <mxGeometry height="80" width="200" y="630" as="geometry"/>
+                </mxCell>
+                <mxCell id="ib" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#083F75;strokeColor=#06315C;fontColor=#ffffff;arcSize=8;fontSize=11;" value="Специалист ИБ&#xa;[человек]" vertex="1">
+                    <mxGeometry height="70" width="200" x="40" y="900" as="geometry"/>
+                </mxCell>
+                <mxCell id="e1-box" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#3C7FC0;dashed=1;verticalAlign=top;align=left;spacingLeft=8;fontSize=10;" value="E1. Коннекторы источников и оркестратор" vertex="1">
+                    <mxGeometry height="143" width="225" x="285" y="65" as="geometry"/>
+                </mxCell>
+                <mxCell id="e1a" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#3C7FC0;fontColor=#ffffff;arcSize=8;fontSize=10;" value="Коннекторы [Python]&#xa;извлечение по партициям" vertex="1">
+                    <mxGeometry height="50" width="200" x="295" y="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="e1b" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#3C7FC0;fontColor=#ffffff;arcSize=8;fontSize=10;" value="Оркестратор [Airflow / Argo]&#xa;расписание, повторы" vertex="1">
+                    <mxGeometry height="45" width="200" x="295" y="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="e2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#3C7FC0;fontColor=#ffffff;arcSize=8;fontSize=11;" value="E2. OCR-контур&#xa;[Tesseract / ABBYY, K8s-воркеры]&#xa;сканы → текст (полный OCR для C4-источников)" vertex="1">
+                    <mxGeometry height="90" width="225" x="285" y="370" as="geometry"/>
+                </mxCell>
+                <mxCell id="stg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#3C7FC0;fontColor=#ffffff;arcSize=8;fontSize=11;" value="E3. Staging (вне ClickHouse)&#xa;[S3-совместимое, SSE-KMS, TTL 24 ч]&#xa;вход пакетов до классификации" vertex="1">
+                    <mxGeometry height="90" width="230" x="740" y="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="e4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#3C7FC0;fontColor=#ffffff;arcSize=8;fontSize=11;" value="E4. Реестр схем и детектор дрейфа&#xa;[Python, PostgreSQL]&#xa;хэш структуры, триггер переклассификации" vertex="1">
+                    <mxGeometry height="90" width="225" x="275" y="228" as="geometry"/>
+                </mxCell>
+                <mxCell id="e5-box" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#3C7FC0;dashed=1;verticalAlign=top;align=left;spacingLeft=8;fontSize=10;" value="E5. Классификатор" vertex="1">
+                    <mxGeometry height="130" width="235" x="650" y="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="e5a" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#3C7FC0;fontColor=#ffffff;arcSize=8;fontSize=10;" value="Воркеры правил [Python, K8s]&#xa;шаблоны, checksum, block/alert" vertex="1">
+                    <mxGeometry height="50" width="215" x="660" y="218" as="geometry"/>
+                </mxCell>
+                <mxCell id="e5b" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#3C7FC0;fontColor=#ffffff;arcSize=8;fontSize=10;" value="NER inference-сервис [Python]&#xa;свободный текст, уверенность" vertex="1">
+                    <mxGeometry height="48" width="215" x="660" y="275" as="geometry"/>
+                </mxCell>
+                <mxCell id="e6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#3C7FC0;fontColor=#ffffff;arcSize=8;fontSize=11;" value="E6. Сервис политик, тегирования и маршрутизации&#xa;[Java, REST, OPA-клиент]&#xa;тег → зона; по умолчанию конфиденциально" vertex="1">
+                    <mxGeometry height="100" width="230" x="545" y="390" as="geometry"/>
+                </mxCell>
+                <mxCell id="q" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#3C7FC0;fontColor=#ffffff;arcSize=8;fontSize=11;" value="E7. Очередь размеченных пакетов&#xa;[Kafka]&#xa;буфер + повторы" vertex="1">
+                    <mxGeometry height="90" width="210" x="820" y="385" as="geometry"/>
+                </mxCell>
+                <mxCell id="e8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#3C7FC0;fontColor=#ffffff;arcSize=8;fontSize=11;" value="E8. Пакетный загрузчик&#xa;[Java/Python, идемпотентность по контрольной сумме]&#xa;токенизация, запись по зонам" vertex="1">
+                    <mxGeometry height="100" width="220" x="1060" y="380" as="geometry"/>
+                </mxCell>
+                <mxCell id="e9-box" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#3C7FC0;dashed=1;verticalAlign=top;align=left;spacingLeft=8;fontSize=10;" value="E9. Очередь карантина" vertex="1">
+                    <mxGeometry height="100" width="235" x="543" y="545" as="geometry"/>
+                </mxCell>
+                <mxCell id="e9a" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#3C7FC0;fontColor=#ffffff;arcSize=8;fontSize=10;" value="Очередь [PostgreSQL]&#xa;TTL 14 дн., SLA ревью 2 р.д." vertex="1">
+                    <mxGeometry height="50" width="215" x="553" y="563" as="geometry"/>
+                </mxCell>
+                <mxCell id="e9b" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#3C7FC0;fontColor=#ffffff;arcSize=8;fontSize=10;" value="UI steward&#xa;masked_view, two_person_approval (Task3 §7.1)" vertex="1">
+                    <mxGeometry height="48" width="215" x="285" y="792" as="geometry"/>
+                </mxCell>
+                <mxCell id="reg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#3C7FC0;fontColor=#ffffff;arcSize=8;fontSize=11;" value="E10. Реестр версий правил, моделей и golden set&#xa;[Git + реестр моделей]&#xa;канареечная раскатка, откат, теневой прогон&#xa;эталон 2 700 полей (2 500 осн. + 200 сложных OCR)" vertex="1">
+                    <mxGeometry height="110" width="225" x="282.5" y="540" as="geometry"/>
+                </mxCell>
+                <mxCell id="met" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#3C7FC0;fontColor=#ffffff;arcSize=8;fontSize=11;" value="E11. Экспортёр метрик качества&#xa;[Python, Prometheus-формат]&#xa;recall/precision по C3–C6, карантин, latency, drift" vertex="1">
+                    <mxGeometry height="100" width="210" x="720" y="810" as="geometry"/>
+                </mxCell>
+                <mxCell id="del" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#3C7FC0;fontColor=#ffffff;arcSize=8;fontSize=11;" value="E12. Служба удаления&#xa;[Java, планировщик]&#xa;TTL, каскад DSAR, криптошрединг" vertex="1">
+                    <mxGeometry height="90" width="220" x="1030" y="523" as="geometry"/>
+                </mxCell>
+                <mxCell id="f1" edge="1" parent="1" source="src" style="endArrow=block;html=1;rounded=0;labelBackgroundColor=#ffffff;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="e1a" value="f1: SFTP/JDBC — пакеты по партициям">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="f2" edge="1" parent="1" source="src" style="endArrow=block;html=1;rounded=0;labelBackgroundColor=#ffffff;fontSize=10;exitX=1;exitY=0.7;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="e2" value="f2: HTTP/SFTP — JPG, PDF, TIFF">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="f3" edge="1" parent="1" source="e1a" style="endArrow=block;html=1;rounded=0;labelBackgroundColor=#ffffff;fontSize=10;" target="stg" value="f3: S3 PUT — сырой пакет (SSE-KMS)">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="f4" edge="1" parent="1" source="e1a" style="endArrow=block;html=1;rounded=0;labelBackgroundColor=#ffffff;fontSize=10;" target="e4" value="f4: HTTP — схема и изменения">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="f5" edge="1" parent="1" source="e2" style="endArrow=block;html=1;rounded=0;labelBackgroundColor=#ffffff;fontSize=10;" target="stg" value="f5: S3 PUT — распознанный текст">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="f6" edge="1" parent="1" source="stg" style="endArrow=block;html=1;rounded=0;labelBackgroundColor=#ffffff;fontSize=10;" target="e5a" value="f6: S3 GET — пакет записей">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="f7" edge="1" parent="1" source="e4" style="endArrow=block;html=1;rounded=0;labelBackgroundColor=#ffffff;fontSize=10;dashed=1;" target="e5a" value="f7: HTTP — триггер переклассификации">
+                    <mxGeometry relative="1" x="-0.5847" y="-20" as="geometry">
+                        <mxPoint x="-1" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="f8" edge="1" parent="1" source="e5b" style="endArrow=block;html=1;rounded=0;labelBackgroundColor=#ffffff;fontSize=10;exitX=0.25;exitY=1;exitDx=0;exitDy=0;" target="e6" value="f8: HTTP — тег и уверенность">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="f9" edge="1" parent="1" source="e6" style="endArrow=block;html=1;rounded=0;labelBackgroundColor=#ffffff;fontSize=10;" target="e9a" value="f9: JDBC — поля без тега / низкая уверенность">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="f10" edge="1" parent="1" source="e9b" style="endArrow=block;html=1;rounded=0;labelBackgroundColor=#ffffff;fontSize=10;" target="steward" value="f10: HTTPS — очередь на разбор (masked_view)">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="f11" edge="1" parent="1" source="steward" style="endArrow=block;html=1;rounded=0;labelBackgroundColor=#ffffff;fontSize=10;dashed=1;entryX=0;entryY=0.8;entryDx=0;entryDy=0;" target="e9b" value="f11: HTTPS — решение steward (тег или отклонение)">
+                    <mxGeometry relative="1" x="-0.0265" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="280" y="820"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="f12" edge="1" parent="1" source="steward" style="endArrow=block;html=1;rounded=0;labelBackgroundColor=#ffffff;fontSize=10;" target="reg" value="f12: Git push — размеченные примеры в golden set">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="f13" edge="1" parent="1" source="reg" style="endArrow=block;html=1;rounded=0;labelBackgroundColor=#ffffff;fontSize=10;dashed=1;entryX=0;entryY=1;entryDx=0;entryDy=0;" target="e5-box" value="f13: HTTP — версии правил и моделей">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="f14" edge="1" parent="1" source="reg" style="endArrow=block;html=1;rounded=0;labelBackgroundColor=#ffffff;fontSize=10;dashed=1;" target="e6" value="f14: HTTP — версии правил маршрутизации">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="f15" edge="1" parent="1" source="e6" style="endArrow=block;html=1;rounded=0;labelBackgroundColor=#ffffff;fontSize=10;" target="q" value="f15: Kafka produce — маршрут и теги">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="f16" edge="1" parent="1" source="q" style="endArrow=block;html=1;rounded=0;labelBackgroundColor=#ffffff;fontSize=10;" target="e8" value="f16: Kafka consume — пакеты с тегами">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="f17" edge="1" parent="1" source="e8" style="endArrow=block;html=1;rounded=0;labelBackgroundColor=#ffffff;fontSize=10;" target="wh-land" value="f17: ClickHouse HTTP — запись в Landing">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="f17b" edge="1" parent="1" source="wh-land" style="endArrow=block;html=1;rounded=0;labelBackgroundColor=#ffffff;fontSize=10;dashed=1;" target="wh-res" value="f17b: ClickHouse internal — перенос по зонам после маршрутизации">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="f18" edge="1" parent="1" source="e9a" style="endArrow=block;html=1;rounded=0;labelBackgroundColor=#ffffff;fontSize=10;dashed=1;exitX=1;exitY=1;exitDx=0;exitDy=0;" target="wh-quar" value="f18: ClickHouse HTTP — изолированная таблица карантина">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="f19" edge="1" parent="1" source="kms" style="endArrow=block;html=1;rounded=0;labelBackgroundColor=#ffffff;fontSize=10;dashed=1;" target="e8" value="f19: TLS — DEK для зон">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="f20" edge="1" parent="1" source="b" style="endArrow=block;html=1;rounded=0;labelBackgroundColor=#ffffff;fontSize=10;dashed=1;" target="e8" value="f20: HTTP — токены и политики">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="f21" edge="1" parent="1" source="e6" style="endArrow=block;html=1;rounded=0;labelBackgroundColor=#ffffff;fontSize=10;dashed=1;" target="opa" value="f21: HTTP — запрос политики (OPA)">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="f22" edge="1" parent="1" source="e8" style="endArrow=block;html=1;rounded=0;labelBackgroundColor=#ffffff;fontSize=10;" target="cat" value="f22: HTTP — теги и lineage">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="f23" edge="1" parent="1" source="e5-box" style="endArrow=block;html=1;rounded=0;labelBackgroundColor=#ffffff;fontSize=10;exitX=0.539;exitY=0.999;exitDx=0;exitDy=0;exitPerimeter=0;" target="met" value="f23: HTTP — журнал классификации">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="f23b" edge="1" parent="1" source="reg" style="endArrow=block;html=1;rounded=0;labelBackgroundColor=#ffffff;fontSize=10;dashed=1;" target="met" value="f23b: Git/HTTP — эталонные метки для recall">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="f23c" edge="1" parent="1" source="e9a" style="endArrow=block;html=1;rounded=0;labelBackgroundColor=#ffffff;fontSize=10;dashed=1;" target="met" value="f23c: JDBC — доля карантина, возраст записей">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="f23d" edge="1" parent="1" source="steward" style="endArrow=block;html=1;rounded=0;labelBackgroundColor=#ffffff;fontSize=10;dashed=1;" target="met" value="f23d: HTTP — результаты ежедневного аудита">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="f24" edge="1" parent="1" source="met" style="endArrow=block;html=1;rounded=0;labelBackgroundColor=#ffffff;fontSize=10;" target="vm" value="f24: Prometheus scrape — метрики качества">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="f25" edge="1" parent="1" source="ib" style="endArrow=block;html=1;rounded=0;labelBackgroundColor=#ffffff;fontSize=10;" target="met" value="f25: HTTPS — проверка инцидента / алерт маршрутизации">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="f26" edge="1" parent="1" source="del" style="endArrow=block;html=1;rounded=0;labelBackgroundColor=#ffffff;fontSize=10;dashed=1;" target="wh-res" value="f26: ClickHouse HTTP — ALTER DELETE, криптошрединг">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="f27" edge="1" parent="1" source="del" style="endArrow=block;html=1;rounded=0;labelBackgroundColor=#ffffff;fontSize=10;dashed=1;" target="cat" value="f27: HTTP — обновление lineage">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="f28" edge="1" parent="1" source="del" style="endArrow=block;html=1;rounded=0;labelBackgroundColor=#ffffff;fontSize=10;dashed=1;" target="kms" value="f28: TLS — уничтожение DEK субъекта">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="f29" edge="1" parent="1" source="del" style="endArrow=block;html=1;rounded=0;labelBackgroundColor=#ffffff;fontSize=10;dashed=1;" target="stg" value="f29: S3 DELETE — сырые пакеты по TTL">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="f30" edge="1" parent="1" source="dsar-reg" style="endArrow=block;html=1;rounded=0;labelBackgroundColor=#ffffff;fontSize=10;" target="del" value="f30: HTTP — каскад DSAR (удалить / прекратить)">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="f31" edge="1" parent="1" source="del" style="endArrow=block;html=1;rounded=0;labelBackgroundColor=#ffffff;fontSize=10;dashed=1;" target="e9a" value="f31: JDBC — удаление полей субъекта из карантина">
+                    <mxGeometry relative="1" x="-0.0391" y="-9" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="lg" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#999999;align=left;verticalAlign=top;spacingLeft=8;fontStyle=1;fontSize=11;" value="Легенда C2" vertex="1">
+                    <mxGeometry height="180" width="1750" x="20" y="1000" as="geometry"/>
+                </mxCell>
+                <mxCell id="lg-t" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=none;align=left;verticalAlign=top;spacing=6;fontSize=10;" value="| Цвет / стиль | Значение |&#xa;|---|---|&#xa;| Средне-синий (#438DD5) | Контейнер движка (E1–E12). В скобках — технология. Нумерация E не пересекается с классами данных C1–C6 (Task3): C1 Публичные, C2 Внутренние, C3 ПД(общие), C4 ПД(здоровье), C5 ПД(фин.), C6 Секреты. |&#xa;| Серо-фиолетовый (#8C8496) | Инфраструктурный сервис или источник данных (KMS, OPA, OpenMetadata, VictoriaMetrics, staging, DSAR-реестр, источники). |&#xa;| Светло-синий (#7EA6E0) | Зона внутри ClickHouse (Landing, Restricted, Pseudonymized, Anonymized, Карантин-таблица). |&#xa;| Тёмно-синий (#083F75) | Человек (data steward, специалист ИБ). |&#xa;| Сплошная стрелка | Поток данных (пакеты, теги, запись в зоны). |&#xa;| Пунктирная стрелка | Служебное управление (триггеры, версии, ключи, политики, удаление). |&#xa;E1 и E5 раскрыты на два подкомпонента (оркестратор/коннекторы; воркеры правил/NER). E9 раскрыт на очередь и UI steward. Для остальных подкомпоненты описаны в classification-engine.md §10. Стрелки f1–f31 маркированы протоколом. Landing — промежуточная зона (TTL 7 дн.), данные из неё переносятся в целевые зоны E8 после маршрутизации (f17b)." vertex="1">
+                    <mxGeometry height="154" width="1730" x="30" y="1018" as="geometry"/>
+                </mxCell>
+                <mxCell id="lzpnJ2oUci2G2r_cmSch-2" edge="1" parent="1" source="opa" style="endArrow=block;html=1;rounded=0;labelBackgroundColor=#ffffff;fontSize=10;dashed=1;" target="b" value="">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1594" y="760" as="sourcePoint"/>
+                        <mxPoint x="1234" y="480" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
